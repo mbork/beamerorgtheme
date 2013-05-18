@@ -1,0 +1,60 @@
+%% beamercolorthemeorg.sty
+%%
+%% Copyright 2007 by Till Tantau and 2013 by Marcin Borkowski
+%%
+%% This beamer theme is based on Till Tantau's default Beamer theme,
+%% with modifications by Marcin Borkowski.
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, version 1.3c,
+% found in the file lppl.txt.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marcin Borkowski <mbork@mbork.pl>.
+%
+% This work consists of the files:
+%   beamercolorthemeorg.sty
+%   beamerfontthemeorg.sty
+%   beamerinnerthemeorg.sty
+%   beamerouterthemeorg.sty
+%   beamerthemeorg.sty
+%   beamerthemeorg-demo.tex
+
+\ProvidesPackage{beamerfontthemeorg}[2013/05/18 Org-inspired font theme for Beamer]
+
+\usepackage{lmodern}% potrzebne do bftt
+
+\DeclareOptionBeamer{stillsansserifmath}[]{\def\mathfamilydefault{\sfdefault}\beamer@sansmathtrue}
+\DeclareOptionBeamer{stillsansserifsmall}[]{\def\beamer@tsfont{\sffamily}}
+\DeclareOptionBeamer{stillsansseriflarge}[]{\def\beamer@sfont{\sffamily}}
+\DeclareOptionBeamer{stillsansseriftext}[]{\def\familydefault{\sfdefault}}
+
+\DeclareOptionBeamer{onlymath}[]{
+  \def\beamer@tsfont{\sffamily}
+  \def\beamer@sfont{\sffamily}
+  \def\familydefault{\sfdefault}
+}
+
+\def\beamer@tsfont{\ttfamily}
+\def\beamer@sfont{\ttfamily}
+\def\familydefault{\ttdefault}
+\def\mathfamilydefault{\ttdefault}
+\beamer@sansmathfalse
+
+\ProcessOptionsBeamer
+
+\setbeamerfont{tiny structure}{family=\beamer@tsfont}
+\setbeamerfont{structure}{family=\beamer@sfont}
+
+\setbeamerfont{institute}{size=\normalsize}
+\setbeamerfont{org keywords}{size=\footnotesize}
+
+\setbeamerfont{framesubtitle}{parent=frametitle,size=\normalsize}
+
+%%%%%%%%%%%% Emacs food
+
+% Local Variables:
+% TeX-command-default: "LaTeX"
+% TeX-master: "beamer-test.tex"
+% End:

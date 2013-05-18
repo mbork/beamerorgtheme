@@ -1,0 +1,237 @@
+%% beamercolorthemeorg.sty
+%%
+%% Copyright 2007 by Till Tantau and 2013 by Marcin Borkowski
+%%
+%% This beamer theme is based on Till Tantau's default Beamer theme,
+%% with modifications by Marcin Borkowski.
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, version 1.3c,
+% found in the file lppl.txt.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marcin Borkowski <mbork@mbork.pl>.
+%
+% This work consists of the files:
+%   beamercolorthemeorg.sty
+%   beamerfontthemeorg.sty
+%   beamerinnerthemeorg.sty
+%   beamerouterthemeorg.sty
+%   beamerthemeorg.sty
+%   beamerthemeorg-demo.tex
+
+\ProvidesPackage{beamerouterthemeorg}[2013/05/18 Org-inspired outer theme for Beamer]
+
+\RequirePackage{etoolbox}
+
+\mode<presentation>
+
+
+\newcommand{\orgtext}[2][\footnotesize]{{%
+    #1\ttfamily #2}}
+% Mini frames
+
+% \defbeamertemplateparent{mini frames}{mini frame,mini frame in current subsection}
+% {}
+
+\defbeamertemplate*{mini frame}{org}
+{\orgtext{+}}
+[action]
+{%
+  {\footnotesize\global\dimen@i=.5em}%
+  \setbeamersize{mini frame size=\dimen@i,mini frame offset=.2\dimen@i}%
+}
+
+\defbeamertemplate*{mini frame in current subsection}{org}
+{\orgtext{-}}
+
+\defbeamertemplate*{mini frame in other subsection}{org}[1][50]
+{\color{fg!#1!bg}\usebeamertemplate{mini frame in current subsection}}
+
+
+% Navigation symbols
+
+\def\insertslidenavigationsymbol{\orgtext{\hskip 1em}%
+  \rlap{\hyperlinkslideprev{\orgtext{<}}%
+  \Acrobatmenu{GoToPage}{\orgtext{[~~]}}%
+  \hyperlinkslidenext{\orgtext{>}}}\orgtext{\hskip 3em}}
+\def\insertframenavigationsymbol{\orgtext{\hskip 1em}%
+  \rlap{\hyperlinkframeendprev{\orgtext{<}}%
+  \hyperlinkframestart{\orgtext{[[}}%
+  \hyperlinkframeend{\orgtext{]]}}%
+  \hyperlinkframestartnext{\orgtext{>}}}\orgtext{\hskip 3em}}
+\def\insertsubsectionnavigationsymbol{\orgtext{\hskip 1em}%
+  \rlap{\hyperlinksubsectionendprev{\orgtext{<}}%
+  \hyperlinksubsectionstart{\orgtext{*}}%
+  \hyperlinksubsectionend{\orgtext{*}}%
+  \hyperlinksubsectionstartnext{\orgtext{>}}}\orgtext{\hskip 2em}}
+\def\insertsectionnavigationsymbol{\orgtext{\hskip 1em}%
+  \rlap{\hyperlinksectionendprev{\orgtext{<}}%
+  \hyperlinksectionstart{\orgtext{\kern 0.25em\rlap{*}\kern0.25em}}%
+  \hyperlinksectionend{\orgtext{\kern 0.25em\llap{*}\kern 0.25em}}%
+  \hyperlinksectionstartnext{\orgtext{>}}}\orgtext{\hskip 2em}}
+\def\insertdocnavigationsymbol{\orgtext{\hskip 1em}%
+  \rlap{\ifx\beamer@startpageofappendix\@empty%
+    \hyperlinkpresentationstart{\orgtext{<<}}%
+    \hyperlinkpresentationend{\orgtext{>>}}%
+  \else%
+    \hyperlinkpresentationstart{\orgtext{<}}%
+    \hyperlinkpresentationend{\orgtext{>}}%
+    \hyperlinkappendixstart{\orgtext{<}}%
+    \hyperlinkappendixend{\orgtext{>}}%
+  \fi}\orgtext{\hskip 2em}}
+\def\insertbackfindforwardnavigationsymbol{\orgtext{\hskip 1em}%
+  \rlap{\Acrobatmenu{GoBack}{\orgtext{<}}
+  \Acrobatmenu{Find}{\orgtext{\kern 0.25em\rlap{?}\kern 0.75em}}
+  \Acrobatmenu{GoForward}{\orgtext{>}}}\orgtext{\hskip 2em}}
+
+% \defbeamertemplate*{headline}{default}
+% {}
+
+\setbeamertemplate{navigation symbols}{% w oryginalnym były chyba jakieś odstępy!
+  \insertslidenavigationsymbol
+  \insertframenavigationsymbol
+  \insertsubsectionnavigationsymbol
+  \insertsectionnavigationsymbol
+  \insertdocnavigationsymbol
+  \insertbackfindforwardnavigationsymbol
+}
+
+\setbeamercolor{modeline}{parent=palette primary}
+
+\defbeamertemplate*{footline}{org}
+{%
+  \usebeamercolor{modeline}%
+  {\fboxsep=1pt\colorbox{bg}{%
+  \hbox to\textwidth{%
+    {\orgtext{--:---~\jobname.tex~~%
+      {%
+        \@tempcnta=\thepage\relax
+        \ifnum\@tempcnta=1
+          Top~%
+        \else
+          \ifnum\@tempcnta=\beamer@endpageofdocument
+            Bot~%
+          \else
+            \multiply\@tempcnta by 100
+            \divide\@tempcnta by\beamer@endpageofdocument\relax
+            \ifnum\@tempcnta<10~\fi\the\@tempcnta\%~%
+          \fi
+        \fi
+      }%
+      \insertframenumber/\inserttotalframenumber
+      \ifdefempty{\insertsectionhead}{}{%
+        ~~[\usebeamertemplate{section in head/foot}]}~}}%
+    \leaders\hbox{\orgtext{-}}\hfil
+%    \orgtext{----------------------------------------}%
+  }\kern-2pt}}%
+  {\footnotesize % = \orgtext-size
+    \vskip 0.5ex}%
+  \hbox to \textwidth{\hfill\usebeamertemplate***{navigation symbols}\orgtext{\hskip 1em}%
+    \@tempdima=\textwidth
+    \@tempcnta=\@tempdima
+    \setbox\@tempboxa=\hbox{\orgtext{\hskip 0.5em}}%
+    \@tempdimb=\wd\@tempboxa
+    \@tempcntb=\@tempdimb
+    \divide\@tempcnta\@tempcntb
+    \multiply\@tempdimb\@tempcnta
+    \advance\@tempdima-\@tempdimb
+%    \showthe\@tempdima
+    \hskip\@tempdima
+  }%
+  {\footnotesize % = \orgtext-size
+    \vskip .5ex}%
+}
+
+% Sidebar
+\defbeamertemplate*{sidebar right}{org}
+{
+  \vfill%
+  \llap{\insertlogo\hskip 0.1cm}%
+  \vskip 0.1cm
+}
+
+% Frame title: default
+
+\defbeamertemplate*{frametitle}{org}[1][left]
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}% MB: ??
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex% MB: ??
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi% MB: ??
+    \strut\insertframetitle\strut%\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \par
+      \else%
+      {: \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut}\par%
+      \fi
+    }%
+    \vskip-1ex% MB: ??
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
+
+\def\beamer@fteright{\vskip0.35cm\advance\leftskip by 1.7cm\advance\rightskip by1.7cm}% MB: ??
+
+% Notes
+% Być może warto później to przejrzeć!!
+
+% \defbeamertemplate*{note page}{default}
+% {%
+%   {%
+%     \scriptsize
+%     \insertvrule{.25\paperheight}{white!90!black}
+%     \vskip-.25\paperheight
+%     \nointerlineskip
+%     \vbox{
+%       \hfill\insertslideintonotes{0.25}\hskip-\Gm@rmargin\hskip0pt%
+%       \vskip-0.25\paperheight%
+%       \nointerlineskip
+%       \begin{pgfpicture}{0cm}{0cm}{0cm}{0cm}
+%         \begin{pgflowlevelscope}{\pgftransformrotate{90}}
+%           {\pgftransformshift{\pgfpoint{-2cm}{0.2cm}}%
+%           \pgftext[base,left]{\footnotesize\the\year-\ifnum\month<10\relax0\fi\the\month-\ifnum\day<10\relax0\fi\the\day}}
+%         \end{pgflowlevelscope}
+%       \end{pgfpicture}}
+%     \nointerlineskip
+%     \vbox to .25\paperheight{\vskip0.5em
+%       \hbox{\insertshorttitle[width=8cm]}%
+%       \setbox\beamer@tempbox=\hbox{\insertsection}%
+%       \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip4pt\raise3pt\hbox{\vrule
+%             width0.4pt height7pt\vrule width 9pt
+%             height0.4pt}}\hskip1pt\hbox{\begin{minipage}[t]{7.5cm}\def\breakhere{}\insertsection\end{minipage}}\fi%
+%       }%
+%       \setbox\beamer@tempbox=\hbox{\insertsubsection}%
+%       \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip17.4pt\raise3pt\hbox{\vrule
+%             width0.4pt height7pt\vrule width 9pt
+%             height0.4pt}}\hskip1pt\hbox{\begin{minipage}[t]{7.5cm}\def\breakhere{}\insertsubsection\end{minipage}}\fi%
+%       }%
+%       \setbox\beamer@tempbox=\hbox{\insertshortframetitle}%
+%       \hbox{\ifdim\wd\beamer@tempbox>1pt{\hskip30.8pt\raise3pt\hbox{\vrule
+%             width0.4pt height7pt\vrule width 9pt
+%             height0.4pt}}\hskip1pt\hbox{\insertshortframetitle[width=7cm]}\fi%
+%       }%
+%       \vfil}%
+%   }%
+%   \vskip.25em
+%   \nointerlineskip
+%   \insertnote
+% }
+
+
+
+\mode
+<all>
+
+%%%%%%%%%%%% Emacs food
+
+% Local Variables:
+% TeX-command-default: "LaTeX"
+% TeX-master: "beamer-test.tex"
+% End:

@@ -1,0 +1,100 @@
+%% beamercolorthemeorg.sty
+%%
+%% Copyright 2007 by Till Tantau and 2013 by Marcin Borkowski
+%%
+%% This beamer theme is based on Till Tantau's default Beamer theme,
+%% with modifications by Marcin Borkowski.
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, version 1.3c,
+% found in the file lppl.txt.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marcin Borkowski <mbork@mbork.pl>.
+%
+% This work consists of the files:
+%   beamercolorthemeorg.sty
+%   beamerfontthemeorg.sty
+%   beamerinnerthemeorg.sty
+%   beamerouterthemeorg.sty
+%   beamerthemeorg.sty
+%   beamerthemeorg-demo.tex
+
+\documentclass{beamer}
+
+\usetheme{org}
+\setbeamertemplate{itemize subitem}[plus]
+
+\begin{document}
+
+\author{Marcin Borkowski}
+\title{An example presentation}
+\subtitle{using the \texttt{beamer} package and the \orgbf{org} theme}
+\date{\today}
+\institute{\texttt{http://mbork.pl}}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contents}
+  \tableofcontents
+\end{frame}
+
+\section{First section}
+
+\subsection{Subsection}
+\begin{frame}
+  An example frame.
+\end{frame}
+
+\begin{frame}
+  \frametitle{A frame with a definition and an example}
+  \begin{definition}
+    Very \alert{cool} definition.
+  \end{definition}
+  \begin{example}
+    And a~fine example.
+  \end{example}
+  \begin{alertblock}{Look here!}
+    And this is an \orgit{alert block}.
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}[label=enumerations]
+  \frametitle{Enumerations}
+  \begin{itemize}[<+->]
+  \item qwerty
+  \item asdf
+    \begin{itemize}[<+->]
+    \item as
+    \item df
+    \end{itemize}
+  \item zxcvbnm
+    \begin{itemize}[<+->]
+    \item 1234
+      \begin{itemize}[<+->]
+      \item 567
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\subsection{Second subsection}
+\begin{frame}
+  \frametitle{A frame with a theorem}
+  \begin{theorem}
+    A cool theorem.
+    \begin{equation*}
+      a^2+b^2=c^2\cdot\int_0^\infty f(x)\,dx
+    \end{equation*}
+  \end{theorem}  
+  \pause
+  \begin{proof}
+    With a cool proof.
+  \end{proof}
+\end{frame}
+
+\end{document}

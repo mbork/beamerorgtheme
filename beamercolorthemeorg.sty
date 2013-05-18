@@ -1,0 +1,44 @@
+%% beamercolorthemeorg.sty
+%%
+%% Copyright 2007 by Till Tantau and 2013 by Marcin Borkowski
+%%
+%% This beamer theme is based on Till Tantau's default Beamer theme,
+%% with modifications by Marcin Borkowski.
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, version 1.3c,
+% found in the file lppl.txt.
+%
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Marcin Borkowski <mbork@mbork.pl>.
+%
+% This work consists of the files:
+%   beamercolorthemeorg.sty
+%   beamerfontthemeorg.sty
+%   beamerinnerthemeorg.sty
+%   beamerouterthemeorg.sty
+%   beamerthemeorg.sty
+%   beamerthemeorg-demo.tex
+
+\ProvidesPackage{beamercolorthemeorg}[2013/05/18 Org-inspired color theme for Beamer]
+
+\mode<presentation>
+
+
+\setbeamercolor{org keywords}{use=structure,fg=structure.fg!40!bg}
+\setbeamercolor{org keywords dimmed}{use=structure,fg=structure.fg!20!bg}
+\setbeamercolor{framesubtitle}{use=structure,fg=structure.fg!70!bg}
+\setbeamercolor{dimmed text}{use=structure,fg=structure.fg!40!bg}
+\setbeamercolor{alerted text}{use=palette secondary,fg=palette secondary.fg}
+\newcommand<>{\dimmed}[1]{{\usebeamercolor{dimmed text}\color{fg}#1}}
+
+\mode
+<all>
+
+%%%%%%%%%%%% Emacs food
+
+% Local Variables:
+% TeX-command-default: "LaTeX"
+% TeX-master: "beamer-test.tex"
+% End:
